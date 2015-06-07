@@ -43,47 +43,47 @@ public class TimePicker extends View {
     private static final String STATE_DIAL_COLOR = "dialColor";
     private static final String STATE_DISABLE_TOUCH = "disableTouch";
 
-    Paint paint;
-    RectF rectF;
+    protected Paint paint;
+    protected RectF rectF;
 
-    float width;
-    float height;
-    float min;
-    float padding;
-    float radius;
-    float dialRadius;
-    float offset;
-    float slopX;
-    float slopY;
-    float posX;
-    float posY;
-    float dialX;
-    float dialY;
-    final static float secAngle = 360/12;
+    protected float width;
+    protected float height;
+    protected float min;
+    protected float padding;
+    protected float radius;
+    protected float dialRadius;
+    protected float offset;
+    protected float slopX;
+    protected float slopY;
+    protected float posX;
+    protected float posY;
+    protected float dialX;
+    protected float dialY;
+    protected final static float secAngle = 360/12;
 
-    int startAngle;
-    int hour;
-    int minutes;
-    int tmp;
-    int previousHour;
-    int textColor = Color.BLACK;
-    int clockColor = Color.BLACK;
-    int dialColor = Color.BLACK;
+    protected int startAngle;
+    protected int hour;
+    protected int minutes;
+    protected int tmp;
+    protected int previousHour;
+    protected int textColor = Color.BLACK;
+    protected int clockColor = Color.BLACK;
+    protected int dialColor = Color.BLACK;
 
-    double angle;
-    double degrees;
+    protected double angle;
+    protected double degrees;
 
-    boolean isMoving;
-    boolean amPm;
-    boolean twentyFour;
-    boolean disableTouch;
+    protected boolean isMoving;
+    protected boolean amPm;
+    protected boolean twentyFour;
+    protected boolean disableTouch;
 
-    String hStr;
-    String mStr;
-    String amPmStr;
+    protected String hStr;
+    protected String mStr;
+    protected String amPmStr;
 
-    OnTimeChangedListener timeChangedListener;
-    Calendar calendar = Calendar.getInstance();
+    protected OnTimeChangedListener timeChangedListener;
+    protected Calendar calendar = Calendar.getInstance();
 
     public static interface OnTimeChangedListener {
         public void timeChanged(Date date);
@@ -99,7 +99,7 @@ public class TimePicker extends View {
         init(context, attrs);
     }
 
-    private void init(Context context, AttributeSet attrs) {
+    protected void init(Context context, AttributeSet attrs) {
         angle = (-Math.PI / 2)+.001;
 
         paint = new Paint();
@@ -116,6 +116,7 @@ public class TimePicker extends View {
                 clockColor = typedArray.getColor(R.styleable.TimePicker_clock_color, Color.BLACK);
                 dialColor = typedArray.getColor(R.styleable.TimePicker_dial_color, Color.BLACK);
                 disableTouch = typedArray.getBoolean(R.styleable.TimePicker_disable_touch, false);
+                typedArray.recycle();
             }
         }
     }
@@ -247,7 +248,7 @@ public class TimePicker extends View {
         return true;
     }
 
-    private void calculatePointerPosition(double angle) {
+    protected void calculatePointerPosition(double angle) {
         dialX = (float) (radius * Math.cos(angle));
         dialY = (float) (radius * Math.sin(angle));
     }
